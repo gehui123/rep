@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--initm-method、destroy-method -->
+    <bean id="car" class="com.huige.spring.beans.cycle.Car"
+    p:brand ="Audi" init-method="initCar" destroy-method="destroyCar"
+    />
+
+    <!--Bean 后置处理器 针对所有bean   bean 的init前后调用这个方法-->
+    <bean id="MyBeanPostProcessor" class="com.huige.spring.beans.cycle.MyBeanPostProcessor"/>
+</beans>

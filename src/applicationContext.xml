@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!--配置bean-->
+    <!--1.属性注入-->
+    <bean id="helloWorld" class="com.huige.spring.beans.collections.HelloWorld">
+        <property name="name" value="huige"/>
+    </bean>
+
+    <!---->
+    <bean id="car" class="com.huige.spring.beans.collections.Car">
+        <constructor-arg value="Audi"/>
+        <constructor-arg value="Shanghai"/>
+        <constructor-arg value="200000"/>
+    </bean>
+    <!--2.构造函数注入-->
+    <bean id="car2" class="com.huige.spring.beans.collections.Car">
+        <constructor-arg value="BMW"/>
+        <constructor-arg value="Shanghai"/>
+        <constructor-arg value="300000"/>
+    </bean>
+    <!--使用list节点为List集合赋值-->
+    <bean id="person" class="com.huige.spring.beans.collections.Person">
+        <property name="name" value="gehui"/>
+        <property name="cars">
+            <list>
+                <ref bean="car"/>
+                <ref bean="car2"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--使用map节点为Map集合赋值-->
+    <bean id="newPerson" class="com.huige.spring.beans.collections.NewPerson">
+        <property name="name" value="huige"/>
+        <property name="cars">
+            <map>
+                <entry key="audi" value-ref="car"/>
+                <entry key="BMW" value-ref="car2"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 配置单例集合bean,以供多个bean进行引用，需要引入util命名空间-->
+    <util:list id="cars">
+        <ref bean="car"/>
+        <ref bean="car2"/>
+    </util:list>
+
+    <!--自动装配 autowire
+      byName：根据名称自动装配 必须将目标Bean的名称和属性名设置的完全相同
+      byType：根据类型自动装配
+    -->
+
+</beans>

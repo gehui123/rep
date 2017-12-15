@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+ <!--Spring_Bean 之间的关系:继承（parent）、依赖(depends-on)-->
+    <!--bean 配置模板 abstract="true" 是抽象Bean,可以不配置class属性,不能实例化-->
+    <bean id="address" p:city="BeiJing" p:street="Wudao" abstract="true"></bean>
+
+    <bean id="address2" class="com.huige.spring.beans.autowire.Address"
+          parent="address" p:street="DaZhongSi"/>
+
+    <bean id="car" class="com.huige.spring.beans.autowire.Car"
+        p:brand="Audi" p:price="300000"
+    />
+    <!--在配置person时，必须有一个关联的car 换句话说person这个bean 依赖于Car 这个Bean-->
+    <!--依赖的bean 必须提前实例化,如果依赖多个bean 可以用逗号或者空格隔开-->
+    <bean id="person" class="com.huige.spring.beans.autowire.Person"
+          p:address-ref="address2" depends-on="car"
+    />
+</beans>

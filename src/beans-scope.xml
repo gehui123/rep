@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Spring_bean 的作用域
+       Single:默认值，容器初始时只创建一个bean,直到容器关闭
+       prototype:每次获取bean 都重新创建Bean
+
+    -->
+    <bean id="car" class="com.huige.spring.beans.autowire.Car"
+        p:brand="Audi" p:price="300000"
+        scope="prototype"
+    />
+</beans>
